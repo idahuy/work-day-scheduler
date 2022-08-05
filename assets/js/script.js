@@ -30,11 +30,6 @@ var createTimeBlocks = function() {
         buttonEl.setAttribute("class", "saveBtn col-md-1");
         divEl.appendChild(buttonEl);
 
-        // create icon
-        var iEl = document.createElement('i');
-        iEl.textContent = "Save";
-        buttonEl.appendChild(iEl);
-
         var currentHour = moment().hours();
         var text = $('.textarea');
     
