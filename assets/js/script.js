@@ -35,7 +35,22 @@ var createTimeBlocks = function() {
         iEl.textContent = "Save";
         buttonEl.appendChild(iEl);
 
-        
+        var currentHour = moment().hours();
+        var text = $('.textarea');
+    
+        // each loop to add class based on hour
+        $(text).each(function(i, element) {
+        var currentTime = i + 9;
+
+        if (currentTime < currentHour) {
+            $(element).addClass("past");
+        } else if (currentTime === currentHour) {
+            $(element).addClass("present");
+        } else {
+            $(element).addClass("future");
+        }
+        console.log(currentTime);
+        });
     }
 };
 
