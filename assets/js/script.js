@@ -21,7 +21,7 @@ var createTimeBlocks = function() {
 
         // create block for content
         var contentEl = document.createElement('textarea');
-        contentEl.setAttribute("class", "col-md-10 border textarea time-block");
+        contentEl.setAttribute("class", "col-md-10 border textarea time-block text-dark");
         contentEl.setAttribute("data-time-id", i);
         divEl.appendChild(contentEl);
 
