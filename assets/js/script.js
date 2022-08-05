@@ -1,13 +1,8 @@
 var now = moment();
 var currentDayEl = document.getElementById('currentDay');
 currentDayEl.textContent = moment(now).format('dddd, MMMM do');
-var blockContainer = document.querySelector('.container')
-var timeArr = ['9AM', '10AM', '11AM', '12AM', '1PM', '2PM', '3PM', '4PM', '5PM']
-var text = $('.textarea')
-
-var pageLoad = function() {
-
-}
+var blockContainer = document.querySelector('.container');
+var timeArr = ['9AM', '10AM', '11AM', '12AM', '1PM', '2PM', '3PM', '4PM', '5PM'];
 
 
 var createTimeBlocks = function() {
@@ -32,21 +27,38 @@ var createTimeBlocks = function() {
 
         // create block for button
         var buttonEl = document.createElement('button');
-        buttonEl.setAttribute("class", "col-md-1 saveBtn");
+        buttonEl.setAttribute("class", "saveBtn col-md-1");
         divEl.appendChild(buttonEl);
 
         // create icon
         var iEl = document.createElement('i');
         iEl.textContent = "Save";
         buttonEl.appendChild(iEl);
+
+        
     }
 };
 
-
-
 window.onload=createTimeBlocks();
 
-function notify() {
-    alert( "clicked" );
-  }
-  $( ".textgroup" ).on( "click", notify );
+$(".saveBtn").on("click", function() {
+    // get the data-time id
+    var timeId = $(this).siblings(".textarea").attr("data-time-id");
+    // user input
+    var userInput = $(this).siblings(".textarea").val();
+    // set input to local storage
+    localStorage.setItem(timeId, JSON.stringify(userInput));
+});   
+
+var getInput = function() {
+    var text = $('.textarea');
+    // get data id from local storage
+    $(text).each(function(i, element) {
+        var timeId = $(element).attr("data-time-id");
+        var textEl = JSON.parse(localStorage.getItem(timeId));
+        $(element).text(textEl);
+    });
+};
+
+getInput();
+
